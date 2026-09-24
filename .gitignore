@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.cache/
+.DS_Store
+Thumbs.db
+*.log
+desktop.ini
+
+# Borrador de CV sin referencias en el sitio (el que se publica es
+# CV_TOMASVALLEJOS.pdf, enlazado desde el botón "Descargar CV").
+CV_TomasVallejos_Junio2026 (1).pdf
+
+# Capturas de referencia viejas, no usadas por ninguna página.
+portfolio-desktop.png
+portfolio-mobile.png

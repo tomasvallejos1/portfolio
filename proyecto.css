@@ -1,0 +1,1274 @@
+/* ------------------------------------------------------------
+   Página de caso de estudio.
+   Extiende el sistema visual de styles.css: mismo tipo de kicker
+   monoespaciado, mismos contrastes papel / tinta, acento por proyecto.
+------------------------------------------------------------- */
+
+body {
+  background: var(--paper);
+}
+
+.case-missing {
+  display: grid;
+  gap: 1.5rem;
+  place-items: start;
+  padding-top: 12rem;
+  padding-bottom: 8rem;
+}
+
+/* ---------------------------------------------------------- Portada */
+
+.case-hero {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(9rem, 16vw, 13rem) 0 clamp(4rem, 8vw, 7rem);
+  background: var(--ink);
+  color: var(--white);
+  isolation: isolate;
+}
+
+.case-hero-grid {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  opacity: 0.5;
+  background-image: linear-gradient(var(--line-dark) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line-dark) 1px, transparent 1px);
+  background-size: 88px 88px;
+  mask-image: radial-gradient(120% 90% at 70% 0%, #000 20%, transparent 78%);
+}
+
+.case-hero::after {
+  position: absolute;
+  z-index: -1;
+  top: -30%;
+  right: -12%;
+  width: 46rem;
+  height: 46rem;
+  border-radius: 50%;
+  opacity: 0.14;
+  background: radial-gradient(circle, var(--project-color, var(--acid)), transparent 62%);
+  content: "";
+}
+
+.case-hero-inner {
+  display: grid;
+  justify-items: start;
+}
+
+.case-back {
+  display: inline-flex;
+  gap: 0.6rem;
+  align-items: center;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  color: rgba(250, 249, 245, 0.62);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  transition: color 0.25s, gap 0.35s var(--ease-out);
+}
+
+.case-back:hover {
+  gap: 1rem;
+  color: var(--project-color, var(--acid));
+}
+
+.case-back i {
+  font-style: normal;
+}
+
+.case-eyebrow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  align-items: center;
+  margin-bottom: 1.75rem;
+  color: rgba(250, 249, 245, 0.6);
+  font-family: Consolas, monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.case-eyebrow i {
+  color: rgba(250, 249, 245, 0.3);
+  font-style: normal;
+}
+
+.case-number {
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+  background: var(--project-color, var(--acid));
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.case-title {
+  max-width: 14ch;
+  margin: 0 0 1.75rem;
+  font-size: clamp(3.4rem, 10vw, 8rem);
+  font-weight: 750;
+  letter-spacing: -0.055em;
+  line-height: 0.9;
+}
+
+.case-tagline {
+  max-width: 46rem;
+  margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+  color: rgba(250, 249, 245, 0.72);
+  font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+  line-height: 1.6;
+}
+
+.case-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-bottom: clamp(3rem, 6vw, 4.5rem);
+}
+
+.case-actions .button {
+  gap: 0.6rem;
+}
+
+.case-actions .button i {
+  font-style: normal;
+}
+
+/* El botón principal toma el color del proyecto, no el acento global. */
+.case-actions .button-primary {
+  background: var(--project-color, var(--acid));
+}
+
+.button-ghost {
+  display: inline-flex;
+  gap: 0.6rem;
+  align-items: center;
+  padding: 1rem 1.6rem;
+  border: 1px solid var(--line-dark);
+  border-radius: 999px;
+  color: var(--white);
+  font-size: 0.78rem;
+  font-weight: 700;
+  transition: border-color 0.3s, background 0.3s;
+}
+
+.button-ghost:hover {
+  border-color: rgba(250, 249, 245, 0.5);
+  background: rgba(250, 249, 245, 0.06);
+}
+
+.case-facts {
+  display: grid;
+  width: 100%;
+  margin: 0 0 2.5rem;
+  padding-top: 2.25rem;
+  border-top: 1px solid var(--line-dark);
+  gap: 1.75rem clamp(1.5rem, 4vw, 4rem);
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.case-fact dt {
+  margin-bottom: 0.5rem;
+  color: rgba(250, 249, 245, 0.45);
+  font-family: Consolas, monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.case-fact dd {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 650;
+}
+
+.case-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.case-tags span {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--line-dark);
+  border-radius: 999px;
+  color: rgba(250, 249, 245, 0.78);
+  font-size: 0.62rem;
+  font-weight: 700;
+}
+
+/* --------------------------------------------------------- Secciones */
+
+.case-body {
+  background: var(--paper);
+}
+
+/* Una sola columna del ancho del contenedor: los bloques con medida más
+   angosta (listas, línea de tiempo) quedan alineados a la izquierda con
+   el título en vez de centrarse por su cuenta. */
+.case-section {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: minmax(0, var(--container));
+  padding: clamp(4.5rem, 9vw, 8rem) var(--gutter);
+}
+
+/* El bloque ocupa el ancho del contenedor para quedar alineado con el
+   resto de la sección; sólo el texto tiene medida limitada. */
+.case-section-head {
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.case-section-head > * {
+  max-width: 46rem;
+}
+
+.case-section-head h2 {
+  margin: 0;
+  font-size: clamp(2.1rem, 4.4vw, 3.6rem);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 1.02;
+}
+
+.case-section-note {
+  margin-top: 1.25rem;
+  color: rgba(11, 12, 12, 0.58);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.case-section .section-kicker span {
+  background: var(--project-color, var(--acid));
+  color: var(--ink);
+}
+
+/* ---------------------------------------------------------- Pantallas */
+
+.screen-gallery {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
+  align-items: start;
+}
+
+.screen-card {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: var(--white);
+  box-shadow: 0 1.5rem 4rem rgba(11, 12, 12, 0.06);
+}
+
+.screen-card.screen-mobile {
+  background: linear-gradient(160deg, var(--project-color, var(--violet)) 0%, var(--paper-soft) 62%);
+}
+
+.screen-shot {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background: var(--paper-soft);
+  cursor: zoom-in;
+}
+
+.screen-card.screen-mobile .screen-shot {
+  display: grid;
+  padding: clamp(1.5rem, 4vw, 2.75rem);
+  place-items: center;
+  background: transparent;
+}
+
+.screen-shot img {
+  width: 100%;
+  transition: transform 1s var(--ease-out);
+}
+
+.screen-card.screen-mobile .screen-shot img {
+  width: auto;
+  max-width: 100%;
+  max-height: 20rem;
+  border: 1px solid rgba(11, 12, 12, 0.5);
+  border-radius: 1.35rem;
+  box-shadow: 0 1.5rem 3rem rgba(11, 12, 12, 0.28);
+}
+
+/* La captura ya trae el chasis del teléfono: sin marco extra, y la
+   sombra sigue la silueta en vez del rectángulo de la imagen. */
+.screen-card.screen-framed .screen-shot img {
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  filter: drop-shadow(0 1.1rem 2.2rem rgba(11, 12, 12, 0.3));
+}
+
+/* Tira de celulares: un solo panel con el color del proyecto y las
+   capturas en fila, sin una tarjeta por teléfono (el chasis ya enmarca).
+   En el celular se vuelve un carrusel deslizable; ver el bloque de abajo. */
+.screen-gallery.is-phones {
+  grid-template-columns: repeat(auto-fit, minmax(10.5rem, 1fr));
+  gap: clamp(1rem, 2.5vw, 2rem);
+  padding: clamp(1.5rem, 3.5vw, 2.75rem);
+  border-radius: 1.25rem;
+  background: linear-gradient(160deg, var(--project-color, var(--violet)) 0%, var(--paper-soft) 72%);
+}
+
+.screen-gallery.is-phones .screen-card {
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.screen-gallery.is-phones .screen-shot {
+  display: block;
+  padding: 0;
+  overflow: visible;
+  background: transparent;
+}
+
+.screen-gallery.is-phones .screen-shot img {
+  width: 100%;
+  max-height: none;
+}
+
+.screen-gallery.is-phones .screen-caption {
+  gap: 0.35rem;
+  padding: 1.1rem 0.2rem 0;
+  border-top: 0;
+}
+
+.screen-gallery.is-phones .screen-caption p {
+  font-size: 0.84rem;
+  line-height: 1.55;
+}
+
+.screen-swipe-hint {
+  display: none;
+  gap: 0.5rem;
+  align-items: center;
+  margin-top: 1rem;
+  color: rgba(11, 12, 12, 0.5);
+  font-family: Consolas, monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.screen-swipe-hint i {
+  color: var(--project-ink, var(--violet));
+  font-style: normal;
+}
+
+.screen-shot:hover img {
+  transform: scale(1.02);
+}
+
+.screen-zoom {
+  position: absolute;
+  right: 0.85rem;
+  bottom: 0.85rem;
+  display: grid;
+  width: 2.1rem;
+  height: 2.1rem;
+  place-items: center;
+  border-radius: 50%;
+  opacity: 0;
+  background: var(--ink);
+  color: var(--white);
+  font-size: 0.8rem;
+  transition: opacity 0.3s;
+}
+
+.screen-shot:hover .screen-zoom,
+.screen-shot:focus-visible .screen-zoom {
+  opacity: 1;
+}
+
+.screen-caption {
+  display: grid;
+  gap: 0.5rem;
+  padding: 1.4rem 1.5rem 1.6rem;
+  border-top: 1px solid var(--line);
+}
+
+.screen-caption strong {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.screen-caption p {
+  color: rgba(11, 12, 12, 0.6);
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+/* ------------------------------------------------------------ Problema */
+
+.case-split {
+  display: grid;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.85fr);
+  align-items: start;
+}
+
+.case-prose {
+  display: grid;
+  gap: 1.5rem;
+  max-width: 40rem;
+}
+
+.case-prose p {
+  color: rgba(11, 12, 12, 0.66);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.case-lead {
+  color: var(--ink) !important;
+  font-size: clamp(1.15rem, 2vw, 1.5rem) !important;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  line-height: 1.45 !important;
+}
+
+.case-checklist {
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: var(--white);
+}
+
+.case-checklist .card-label {
+  color: rgba(11, 12, 12, 0.5);
+}
+
+.case-checklist ul {
+  display: grid;
+  gap: 1rem;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.case-checklist li {
+  display: grid;
+  gap: 0.75rem;
+  align-items: start;
+  grid-template-columns: auto 1fr;
+  color: rgba(11, 12, 12, 0.72);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.case-checklist li i {
+  color: var(--project-ink, var(--violet));
+  font-style: normal;
+  font-weight: 700;
+}
+
+/* -------------------------------------------------------------- Origen */
+
+.case-timeline {
+  display: grid;
+  gap: 0;
+  max-width: 52rem;
+}
+
+.timeline-step {
+  display: grid;
+  gap: 1.5rem;
+  padding: 2rem 0;
+  border-top: 1px solid var(--line);
+  grid-template-columns: auto minmax(0, 1fr);
+}
+
+.timeline-step:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.timeline-marker {
+  display: grid;
+  width: 2.6rem;
+  height: 2.6rem;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  font-family: Consolas, monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+.timeline-step p {
+  color: rgba(11, 12, 12, 0.68);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+/* ------------------------------------------------------------ Qué hace */
+
+.feature-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr));
+}
+
+.feature-card {
+  display: grid;
+  gap: 0.75rem;
+  align-content: start;
+  padding: clamp(1.5rem, 3vw, 2rem);
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: var(--white);
+  transition: transform 0.5s var(--ease-out), border-color 0.35s;
+}
+
+.feature-card:hover {
+  border-color: var(--project-ink, var(--violet));
+  transform: translateY(-4px);
+}
+
+.feature-number {
+  color: var(--project-ink, var(--violet));
+  font-family: Consolas, monospace;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.feature-card h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.feature-card p {
+  color: rgba(11, 12, 12, 0.6);
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+/* --------------------------------------------------------------- Stack */
+
+.case-section-dark {
+  background: var(--ink);
+  color: var(--white);
+}
+
+.case-section-dark .case-section-head h2 {
+  color: var(--white);
+}
+
+.case-section-dark .case-section-note {
+  color: rgba(250, 249, 245, 0.6);
+}
+
+.case-section-dark .section-kicker {
+  color: rgba(250, 249, 245, 0.6);
+}
+
+.stack-groups {
+  display: grid;
+  gap: 0;
+}
+
+.stack-group {
+  display: grid;
+  gap: clamp(1.25rem, 4vw, 3.5rem);
+  padding: clamp(2rem, 4vw, 2.75rem) 0;
+  border-top: 1px solid var(--line-dark);
+  grid-template-columns: minmax(160px, 0.4fr) minmax(0, 1.6fr);
+}
+
+.stack-group:last-child {
+  border-bottom: 1px solid var(--line-dark);
+}
+
+.stack-group-title {
+  color: var(--project-color, var(--acid));
+  font-family: Consolas, monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.stack-items {
+  display: grid;
+  gap: 1.75rem;
+}
+
+.stack-item h4 {
+  margin: 0 0 0.6rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.stack-item p {
+  max-width: 46rem;
+  color: rgba(250, 249, 245, 0.62);
+  font-size: 0.94rem;
+  line-height: 1.75;
+}
+
+/* --------------------------------------------------------- Rendimiento */
+
+.perf-lead {
+  margin-top: 1.5rem;
+  max-width: 46rem;
+  color: rgba(11, 12, 12, 0.72) !important;
+  font-size: clamp(1.02rem, 1.7vw, 1.22rem) !important;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.6 !important;
+}
+
+.perf-list {
+  display: grid;
+  gap: 0;
+  max-width: 60rem;
+}
+
+.perf-item {
+  display: grid;
+  gap: 1.25rem;
+  align-items: start;
+  padding: 1.75rem 0;
+  border-top: 1px solid var(--line);
+  grid-template-columns: auto minmax(0, 1fr);
+}
+
+.perf-item:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.perf-bullet {
+  display: grid;
+  width: 2.1rem;
+  height: 2.1rem;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--project-color, var(--violet));
+  color: var(--ink);
+  font-size: 0.78rem;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.perf-item h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.perf-item p {
+  max-width: 46rem;
+  color: rgba(11, 12, 12, 0.62);
+  font-size: 0.93rem;
+  line-height: 1.72;
+}
+
+/* ----------------------------------------------------------- Impacto */
+
+.impact-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr));
+}
+
+.impact-stat {
+  display: grid;
+  gap: 0.5rem;
+  padding: clamp(1.5rem, 3vw, 2rem) 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: var(--white);
+  text-align: center;
+  transition: transform 0.5s var(--ease-out), border-color 0.35s;
+}
+
+.impact-stat:hover {
+  border-color: var(--project-ink, var(--violet));
+  transform: translateY(-4px);
+}
+
+.impact-stat strong {
+  color: var(--project-ink, var(--violet));
+  font-size: clamp(2.1rem, 4.5vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.impact-stat span {
+  color: rgba(11, 12, 12, 0.6);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+/* ------------------------------------------------------------ Patrones */
+
+.pattern-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+}
+
+.pattern-card {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+  padding: clamp(1.6rem, 3vw, 2.15rem);
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: var(--white);
+  transition: border-color 0.35s, box-shadow 0.5s var(--ease-out);
+}
+
+.pattern-card:hover {
+  border-color: var(--project-ink, var(--violet));
+  box-shadow: 0 1.25rem 3rem rgba(11, 12, 12, 0.07);
+}
+
+.pattern-head {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.pattern-head h3 {
+  font-size: 1.05rem;
+  font-weight: 750;
+  letter-spacing: -0.025em;
+}
+
+.pattern-head i {
+  color: var(--project-ink, var(--violet));
+  font-style: normal;
+}
+
+.pattern-where {
+  padding: 0.5rem 0.7rem;
+  border-radius: 0.5rem;
+  background: var(--paper-soft);
+  color: rgba(11, 12, 12, 0.6);
+  font-family: Consolas, monospace;
+  font-size: 0.68rem;
+  line-height: 1.45;
+  justify-self: start;
+}
+
+.pattern-card p {
+  color: rgba(11, 12, 12, 0.62);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+/* ---------------------------------------------------------- Decisiones */
+
+.decision-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.decision-card {
+  padding: clamp(1.75rem, 3.5vw, 2.5rem);
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: var(--white);
+}
+
+.decision-card h3 {
+  margin-bottom: 1.75rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--line);
+  font-size: clamp(1.15rem, 2.2vw, 1.55rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.decision-rows {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+}
+
+.decision-row {
+  display: grid;
+  gap: 0.7rem;
+  align-content: start;
+  padding-left: 1rem;
+  border-left: 2px solid var(--line);
+}
+
+.decision-row.is-choice {
+  border-left-color: var(--project-ink, var(--violet));
+}
+
+.decision-row.is-tradeoff {
+  border-left-color: rgba(11, 12, 12, 0.28);
+}
+
+.decision-label {
+  color: rgba(11, 12, 12, 0.42);
+  font-family: Consolas, monospace;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.decision-row p {
+  color: rgba(11, 12, 12, 0.68);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+/* -------------------------------------------------------- Aprendizajes */
+
+.learned-list {
+  display: grid;
+  gap: 0;
+  max-width: 52rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.learned-list li {
+  display: grid;
+  gap: 1.25rem;
+  align-items: start;
+  padding: 1.6rem 0;
+  border-top: 1px solid var(--line);
+  grid-template-columns: auto minmax(0, 1fr);
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  line-height: 1.6;
+}
+
+.learned-list li:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.learned-list i {
+  color: var(--project-ink, var(--violet));
+  font-style: normal;
+}
+
+/* ------------------------------------------------- Siguiente proyecto */
+
+.case-next {
+  padding: clamp(4rem, 8vw, 7rem) 0;
+  background: var(--ink);
+  color: var(--white);
+}
+
+.case-next-inner {
+  display: grid;
+  gap: clamp(2rem, 5vw, 4rem);
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr);
+  align-items: center;
+}
+
+.case-next-link {
+  display: grid;
+  gap: 0.5rem;
+  padding: clamp(1.75rem, 4vw, 2.5rem);
+  border: 1px solid var(--line-dark);
+  border-radius: 1rem;
+  transition: border-color 0.35s, background 0.35s, transform 0.5s var(--ease-out);
+}
+
+.case-next-link:hover {
+  border-color: var(--project-color, var(--acid));
+  background: rgba(250, 249, 245, 0.04);
+  transform: translateY(-4px);
+}
+
+.case-next-label {
+  color: rgba(250, 249, 245, 0.45);
+  font-family: Consolas, monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.case-next-link strong {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+
+.case-next-meta {
+  color: rgba(250, 249, 245, 0.55);
+  font-size: 0.82rem;
+}
+
+.case-next-link i {
+  color: var(--project-color, var(--acid));
+  font-size: 1.4rem;
+  font-style: normal;
+  justify-self: end;
+}
+
+.case-next-contact {
+  display: grid;
+  gap: 1rem;
+  justify-items: start;
+}
+
+.case-next-contact p {
+  color: rgba(250, 249, 245, 0.72);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.case-next-contact .line-link {
+  color: var(--white);
+}
+
+/* --------------------------------------------------------- Índice fijo */
+
+.case-nav {
+  position: fixed;
+  z-index: 30;
+  top: 50%;
+  left: clamp(1rem, 2vw, 2rem);
+  display: none;
+  flex-direction: column;
+  gap: 0.55rem;
+  max-width: 12rem;
+  transform: translateY(-50%);
+}
+
+.case-nav a {
+  padding-left: 0.9rem;
+  border-left: 2px solid var(--line);
+  color: rgba(11, 12, 12, 0.4);
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: 1.3;
+  transition: color 0.25s, border-color 0.25s;
+}
+
+.case-nav a:hover,
+.case-nav a.active {
+  border-left-color: var(--project-ink, var(--violet));
+  color: var(--ink);
+}
+
+@media (min-width: 1500px) {
+  .case-nav {
+    display: flex;
+  }
+}
+
+/* ------------------------------------------------------------ Lightbox */
+
+body.lightbox-open {
+  overflow: hidden;
+}
+
+.lightbox {
+  position: fixed;
+  z-index: 1200;
+  display: grid;
+  padding: clamp(1.5rem, 5vw, 4rem);
+  inset: 0;
+  place-items: center;
+  background: rgba(11, 12, 12, 0.92);
+  backdrop-filter: blur(6px);
+}
+
+.lightbox[hidden] {
+  display: none;
+}
+
+.lightbox-figure {
+  display: grid;
+  gap: 1.25rem;
+  max-width: min(100%, 1200px);
+  margin: 0;
+}
+
+.lightbox-image {
+  max-height: 76vh;
+  border: 1px solid var(--line-dark);
+  border-radius: 0.75rem;
+  object-fit: contain;
+}
+
+.lightbox-image.is-framed {
+  border: 0;
+  border-radius: 0;
+}
+
+.lightbox-caption {
+  color: rgba(250, 249, 245, 0.72);
+  font-size: 0.88rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: clamp(1rem, 3vw, 2rem);
+  right: clamp(1rem, 3vw, 2rem);
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(250, 249, 245, 0.1);
+  color: var(--white);
+  cursor: pointer;
+  transition: background 0.25s;
+}
+
+.lightbox-close:hover {
+  background: rgba(250, 249, 245, 0.22);
+}
+
+/* --------------------------------------------------------- Responsive */
+
+@media (max-width: 980px) {
+  .case-split,
+  .case-next-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .stack-group {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+/* Celular: mismo contenido con menos aire. Los rellenos y márgenes de
+   escritorio sumaban casi una pantalla de vacío entre sección y sección. */
+@media (max-width: 640px) {
+  /* Portada */
+  .case-hero {
+    padding: 6.75rem 0 3rem;
+  }
+
+  .case-back {
+    margin-bottom: 1.75rem;
+  }
+
+  .case-eyebrow {
+    margin-bottom: 1.1rem;
+  }
+
+  .case-title {
+    margin-bottom: 1rem;
+  }
+
+  .case-tagline {
+    margin-bottom: 1.75rem;
+  }
+
+  .case-actions {
+    gap: 0.6rem;
+    margin-bottom: 2.25rem;
+  }
+
+  .case-actions .button,
+  .case-actions .button-ghost {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .case-facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.1rem 1rem;
+    margin-bottom: 1.75rem;
+    padding-top: 1.5rem;
+  }
+
+  .case-fact dt {
+    margin-bottom: 0.3rem;
+  }
+
+  .case-fact dd {
+    font-size: 0.88rem;
+  }
+
+  .case-tags {
+    gap: 0.4rem;
+  }
+
+  .case-tags span {
+    padding: 0.4rem 0.65rem;
+    font-size: 0.6rem;
+  }
+
+  /* Secciones */
+  .case-section {
+    padding-block: 3.5rem;
+  }
+
+  .case-section-head {
+    margin-bottom: 1.75rem;
+  }
+
+  .case-section .section-kicker {
+    margin-bottom: 1.1rem;
+  }
+
+  .case-section-head h2 {
+    font-size: clamp(1.9rem, 8.5vw, 2.4rem);
+  }
+
+  .case-section-note {
+    margin-top: 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  /* Tira de celulares como carrusel: ocupa una fila en vez de apilar
+     las capturas, y cada teléfono queda lo bastante grande para leerse. */
+  .screen-gallery.is-phones {
+    grid-template-columns: none;
+    grid-auto-columns: 62%;
+    grid-auto-flow: column;
+    gap: 1rem;
+    margin-inline: calc(var(--gutter) * -1);
+    padding: 1.75rem var(--gutter) 1.5rem;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    border-radius: 0;
+    scroll-padding-inline: var(--gutter);
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .screen-gallery.is-phones::-webkit-scrollbar {
+    display: none;
+  }
+
+  .screen-gallery.is-phones .screen-card {
+    scroll-snap-align: start;
+  }
+
+  .screen-swipe-hint {
+    display: flex;
+  }
+
+  /* Contexto y origen */
+  .case-prose {
+    gap: 1.1rem;
+  }
+
+  .case-prose p,
+  .timeline-step p {
+    font-size: 0.95rem;
+    line-height: 1.72;
+  }
+
+  .case-checklist {
+    padding: 1.25rem;
+  }
+
+  .timeline-step {
+    gap: 1rem;
+    padding: 1.4rem 0;
+  }
+
+  .timeline-marker {
+    width: 2.1rem;
+    height: 2.1rem;
+    font-size: 0.6rem;
+  }
+
+  /* Tarjetas y listas */
+  .feature-grid,
+  .pattern-grid,
+  .decision-list {
+    gap: 0.6rem;
+  }
+
+  .feature-card {
+    gap: 0.4rem;
+    padding: 1.15rem 1.25rem;
+  }
+
+  .impact-grid {
+    gap: 0.6rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .impact-stat {
+    padding: 1.15rem 0.75rem;
+  }
+
+  .stack-group {
+    gap: 0.9rem;
+    padding: 1.5rem 0;
+  }
+
+  .stack-items {
+    gap: 1.25rem;
+  }
+
+  .stack-item p {
+    font-size: 0.9rem;
+  }
+
+  .perf-item {
+    gap: 0.9rem;
+    padding: 1.25rem 0;
+  }
+
+  .perf-bullet {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+
+  .pattern-card {
+    gap: 0.75rem;
+    padding: 1.25rem;
+  }
+
+  .decision-card {
+    padding: 1.25rem;
+  }
+
+  .decision-card h3 {
+    margin-bottom: 1.1rem;
+    padding-bottom: 0.9rem;
+  }
+
+  .decision-rows {
+    gap: 1.1rem;
+  }
+
+  .learned-list li {
+    gap: 0.9rem;
+    padding: 1.1rem 0;
+    font-size: 0.98rem;
+  }
+
+  /* Cierre */
+  .case-next {
+    padding: 3rem 0;
+  }
+
+  .case-next-inner {
+    gap: 1.75rem;
+  }
+
+  .case-next-link {
+    padding: 1.4rem;
+  }
+}
