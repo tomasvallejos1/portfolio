@@ -14,7 +14,7 @@ window.PORTFOLIO_DATA = Object.freeze({
     email: 'tomasvallejos081@gmail.com',
     linkedin: 'https://www.linkedin.com/in/tomasvallejos123',
     github: 'https://github.com/tomasvallejos1',
-    cv: 'CV_TOMASVALLEJOS.pdf',
+    cv: 'CV_TOMASVALLEJOS.pdf?v=20260927',
   },
 
   projects: [
@@ -28,7 +28,7 @@ window.PORTFOLIO_DATA = Object.freeze({
       status: 'Beta pública',
       role: 'Producto y desarrollo full stack',
       description:
-        'Gestor financiero personal que junta gastos, inversiones, cuentas y tarjetas en un solo lugar. Se cargan gastos por WhatsApp, se escanean comprobantes con IA y las cotizaciones se actualizan solas. Construido con foco en el rendimiento: se usa desde el celular y tiene que abrir al instante.',
+        'Gestor financiero personal: gastos, inversiones, cuentas y tarjetas en un solo lugar. Su centro es Manguito, un asistente que carga gastos por texto, voz o foto y responde sólo sobre tus datos, derivando a la IA únicamente lo que requiere razonar. Construido con foco en el rendimiento: se usa desde el celular y tiene que abrir al instante.',
       technologies: ['TypeScript', 'Angular', 'Node.js', 'Express', 'PostgreSQL', 'OpenAI', 'NVIDIA NIM'],
       href: 'https://mangofi.pages.dev/',
       source: 'https://github.com/tomasvallejos1/ERP-Finanzas-Personales',
@@ -52,6 +52,78 @@ window.PORTFOLIO_DATA = Object.freeze({
           { label: 'Estado', value: 'Beta pública, en desarrollo' },
           { label: 'Desde', value: 'Marzo 2026' },
         ],
+
+        assistant: {
+          title: 'Manguito, el asistente que decide cuándo usar IA',
+          lead:
+            'Manguito es el centro de MangoFi: le escribís, le hablás o le mandás una foto, y carga el movimiento o responde tu pregunta. No es un chat genérico montado encima de la app: está armado por capas, y cada mensaje recorre sólo las que necesita.',
+          demos: [
+            {
+              src: 'assets/proyectos/mangofi/manguito-gasto.mp4',
+              poster: 'assets/proyectos/mangofi/manguito-gasto.webp',
+              caption: 'Cargar un gasto',
+              text: '“Hoy gasté 10600 en comida y pagué con Mercado Pago.” Manguito detecta un gasto, completa monto, categoría, cuenta y fecha, y lo registra recién cuando lo confirmás.',
+              alt: 'Grabación en un celular: se le escribe a Manguito un gasto de 10.600 pesos en comida pagado con Mercado Pago, aparece una tarjeta con los datos detectados, se confirma y queda registrado.',
+            },
+            {
+              src: 'assets/proyectos/mangofi/manguito-consulta.mp4',
+              poster: 'assets/proyectos/mangofi/manguito-consulta.webp',
+              caption: 'Consultar tus datos',
+              text: '“¿Tuve algún gasto hoy pagado con Mercado Pago?” La pregunta requiere razonar, así que pasa a la IA con tus movimientos como contexto. Los estados de carga muestran cada paso: leer la consulta, revisar movimientos, armar la respuesta.',
+              alt: 'Grabación en un celular: se le pregunta a Manguito si hubo gastos hoy pagados con Mercado Pago y responde con el detalle del gasto registrado ese día.',
+            },
+          ],
+          flow: {
+            input: {
+              step: 'Entrada',
+              title: 'Texto, voz o imagen',
+              text: 'Un mensaje escrito, un audio o la foto de un ticket. Lo primero es entender qué llegó, sea cual sea el formato.',
+              chips: ['Texto', 'Voz', 'Imagen'],
+            },
+            router: {
+              step: 'Clasificación',
+              title: '¿Acción o razonamiento?',
+              text: 'Antes de gastar un token, Manguito decide qué tipo de mensaje es y a qué capa va.',
+            },
+            branches: [
+              {
+                tag: 'Acción',
+                title: 'La resuelve el servidor',
+                text: 'Si detecta que querés cargar un gasto, lo procesa el servidor: arma el movimiento con monto, categoría, cuenta y fecha, y te lo muestra en una tarjeta editable para confirmar.',
+                meta: 'Sin llamada al modelo',
+              },
+              {
+                tag: 'Razonamiento',
+                title: 'La resuelve la IA, con tus datos',
+                text: 'Si la tarea requiere pensar —comparar, resumir, buscar en tus movimientos— se deriva al modelo, que recibe como contexto la información de tu cuenta.',
+                meta: 'RAG sobre tu cuenta',
+              },
+            ],
+            output: {
+              step: 'Respuesta',
+              title: 'Una tarjeta o una respuesta con tus datos',
+              text: 'Nada se guarda sin tu confirmación, y ninguna respuesta sale de fuera de la app.',
+            },
+          },
+          points: [
+            {
+              title: 'Menos costo por mensaje',
+              text: 'Cargar un gasto no requiere razonar. Resolverlo en el servidor evita pagar el modelo por cada carga, y la IA queda para las consultas que de verdad la necesitan.',
+            },
+            {
+              title: 'Responde sólo sobre tu cuenta',
+              text: 'Funciona como un RAG: responde en base a la app y a tus gastos, ingresos, cuentas e inversiones. No es un chat de propósito general.',
+            },
+            {
+              title: 'Voz e imagen, no sólo texto',
+              text: 'Además de escribirle, se le puede dictar el gasto o mandarle la foto del ticket o del resumen.',
+            },
+            {
+              title: 'Vos confirmás',
+              text: 'Lo detectado aparece en una tarjeta con todos los campos editables. El movimiento se registra recién cuando lo confirmás.',
+            },
+          ],
+        },
 
         problem: {
           title: 'El problema',
@@ -85,8 +157,8 @@ window.PORTFOLIO_DATA = Object.freeze({
               text: 'Gastos, ingresos, cuentas e inversiones en una sola vista, con el patrimonio neto siempre al día.',
             },
             {
-              title: 'Carga por WhatsApp',
-              text: 'Un asistente lee el mensaje en lenguaje natural, entiende qué se gastó y lo registra sin abrir la app.',
+              title: 'Carga por WhatsApp o en la app',
+              text: 'Manguito, el asistente, entiende el mensaje —escrito o de voz—, arma el movimiento y lo registra sin pasar por formularios.',
             },
             {
               title: 'Lectura de comprobantes',
@@ -141,7 +213,7 @@ window.PORTFOLIO_DATA = Object.freeze({
               items: [
                 {
                   name: 'OpenAI · NVIDIA NIM',
-                  why: 'Dos usos distintos: entender mensajes en lenguaje natural (“gasté 12 lucas en el súper”) y leer comprobantes con un modelo de visión que devuelve JSON estructurado.',
+                  why: 'Se usan sólo donde aportan: responder consultas que requieren razonar sobre los datos del usuario y leer comprobantes con un modelo de visión que devuelve JSON estructurado. Las cargas simples las resuelve el servidor sin llamar al modelo.',
                 },
               ],
             },
@@ -186,6 +258,16 @@ window.PORTFOLIO_DATA = Object.freeze({
             'No se aplicaron patrones por catálogo: cada uno resuelve un problema concreto que ya había aparecido.',
           items: [
             {
+              name: 'Enrutamiento por intención',
+              where: 'Manguito: clasificación → servidor o IA',
+              why: 'Cada mensaje se clasifica antes de procesarse. Las acciones concretas, como cargar un gasto, van por un camino del servidor; sólo lo que requiere razonar llega al modelo. Es lo que mantiene bajo el costo del asistente.',
+            },
+            {
+              name: 'RAG acotado a la cuenta',
+              where: 'Consultas a Manguito',
+              why: 'El modelo no responde desde conocimiento general: recibe como contexto la app y los datos del usuario —gastos, ingresos, cuentas, inversiones— y responde sobre eso.',
+            },
+            {
               name: 'Cliente / servidor desacoplado',
               where: 'Angular en Cloudflare Pages ↔ API REST en Node',
               why: 'El front es estático y la API vive aparte. Se pueden desplegar por separado, y mañana un cliente distinto (el bot de WhatsApp, por ejemplo) consume la misma API sin duplicar lógica.',
@@ -216,6 +298,12 @@ window.PORTFOLIO_DATA = Object.freeze({
         decisions: {
           title: 'Decisiones que costaron',
           items: [
+            {
+              title: 'No mandar todo a la IA',
+              choice: 'Un asistente por capas: las cargas las resuelve el servidor y sólo las consultas que requieren razonar pasan al modelo.',
+              why: 'Mandar cada mensaje a un LLM es lo más simple de construir, pero cada carga de gasto se paga en tokens aunque no haga falta pensar nada. Separar los caminos reduce el costo del servicio sin resignar lo que la IA hace bien.',
+              tradeoff: 'Dos caminos que mantener y una clasificación que tiene que acertar: un mensaje mal clasificado va por el camino equivocado.',
+            },
             {
               title: 'Reescribir el prototipo en vez de estirarlo',
               choice: 'El primer prototipo (React + Supabase) quedó como validación del modelo de datos y el producto se rehízo en Angular con API propia.',

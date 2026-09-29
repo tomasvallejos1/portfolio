@@ -191,6 +191,134 @@
     return node;
   };
 
+  /* --- 2b. Asistente: demos en video + recorrido por capas --------------- */
+
+  const buildAssistant = () => {
+    const assistant = caseData.assistant;
+    if (!assistant) return null;
+
+    const node = section('asistente', 'Asistente', assistant.title || 'El asistente');
+    if (assistant.lead) {
+      node.querySelector('.case-section-head').append(el('p', 'case-lead perf-lead', assistant.lead));
+    }
+
+    const layout = el('div', 'assistant-layout');
+
+    /* Demos: se reproducen sólo mientras se ven, sin sonido y en loop.
+       Con movimiento reducido quedan quietas, con controles. */
+    if (assistant.demos?.length) {
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const demos = el('div', 'assistant-demos reveal');
+
+      assistant.demos.forEach((demo) => {
+        const figure = el('figure', 'assistant-demo');
+        const video = el('video', 'assistant-video');
+        video.muted = true;
+        video.loop = true;
+        video.playsInline = true;
+        video.preload = 'none';
+        video.setAttribute('muted', '');
+        video.setAttribute('playsinline', '');
+        if (demo.poster) video.poster = asset(demo.poster);
+        if (demo.alt) video.setAttribute('aria-label', demo.alt);
+        if (reduce) video.controls = true;
+
+        const source = el('source');
+        source.src = asset(demo.src);
+        source.type = 'video/mp4';
+        video.append(source);
+
+        const caption = el('figcaption', 'assistant-demo-caption');
+        if (demo.caption) caption.append(el('strong', '', demo.caption));
+        if (demo.text) caption.append(el('p', '', demo.text));
+
+        figure.append(video, caption);
+        demos.append(figure);
+      });
+
+      if (!reduce && 'IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              const video = entry.target;
+              if (entry.isIntersecting) {
+                video.play().catch(() => {
+                  video.controls = true;
+                });
+              } else {
+                video.pause();
+              }
+            });
+          },
+          { threshold: 0.35 },
+        );
+        demos.querySelectorAll('video').forEach((video) => observer.observe(video));
+      } else {
+        demos.querySelectorAll('video').forEach((video) => {
+          video.controls = true;
+        });
+      }
+
+      layout.append(demos);
+    }
+
+    /* Recorrido de un mensaje: entrada → clasificación → dos caminos → respuesta. */
+    const flow = assistant.flow;
+    if (flow) {
+      const diagram = el('ol', 'assistant-flow reveal');
+      diagram.setAttribute('aria-label', 'Recorrido de un mensaje por las capas de Manguito');
+
+      const stepNode = (data, extraClass = '') => {
+        const item = el('li', `flow-node ${extraClass}`.trim());
+        if (data.step) item.append(el('span', 'flow-step', data.step));
+        item.append(el('h3', '', data.title));
+        if (data.text) item.append(el('p', '', data.text));
+        if (data.chips?.length) {
+          const chips = el('div', 'flow-chips');
+          data.chips.forEach((chip) => chips.append(el('span', '', chip)));
+          item.append(chips);
+        }
+        return item;
+      };
+
+      if (flow.input) diagram.append(stepNode(flow.input, 'is-input'));
+      if (flow.router) diagram.append(stepNode(flow.router, 'is-router'));
+
+      if (flow.branches?.length) {
+        const branchItem = el('li', 'flow-branches');
+        branchItem.append(el('span', 'flow-step', 'Dos caminos'));
+        const branches = el('div', 'flow-branch-grid');
+        flow.branches.forEach((branch, index) => {
+          const card = el('article', `flow-branch ${index === 0 ? 'is-server' : 'is-ai'}`);
+          const head = el('div', 'flow-branch-head');
+          head.append(el('span', 'flow-tag', branch.tag));
+          if (branch.meta) head.append(el('span', 'flow-meta', branch.meta));
+          card.append(head, el('h3', '', branch.title), el('p', '', branch.text));
+          branches.append(card);
+        });
+        branchItem.append(branches);
+        diagram.append(branchItem);
+      }
+
+      if (flow.output) diagram.append(stepNode(flow.output, 'is-output'));
+      layout.append(diagram);
+    }
+
+    node.append(layout);
+
+    if (assistant.points?.length) {
+      const points = el('div', 'assistant-points');
+      assistant.points.forEach((point) => {
+        const card = el('article', 'assistant-point reveal');
+        card.append(el('h3', '', point.title), el('p', '', point.text));
+        points.append(card);
+      });
+      node.append(points);
+    }
+
+    return node;
+  };
+
   /* --- 3. Narrativa ---------------------------------------------------- */
 
   const buildProblem = () => {
@@ -512,6 +640,7 @@
   const body = el('div', 'case-body');
   [
     buildScreens(),
+    buildAssistant(),
     buildProblem(),
     buildOrigin(),
     buildSolves(),

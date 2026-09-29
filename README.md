@@ -79,6 +79,17 @@ Los mockups de teléfono (`app-*.webp` de MangoFi) están recortados y con las e
 
 Las pantallas que están detrás de un login y no tengas capturadas simplemente no aparecen: para sumarlas, poné la imagen en la carpeta del proyecto y agregá una entrada en `case.screens`.
 
+## CV
+
+`CV_TOMASVALLEJOS.pdf` (el que descarga el botón "Descargar CV" del home) se genera con `cv/build_cv.py`, no se edita a mano. El contenido del CV **no se lee de `content.js`**: vive como texto directamente en el script, pensado para un formato de una página que prioriza lo más relevante para un CV y no necesariamente coincide palabra por palabra con el sitio. Si cambia algo en `content.js` (una experiencia, un proyecto, un dato de contacto) hay que actualizar `cv/build_cv.py` a mano y volver a generar:
+
+```bash
+pip install reportlab
+python cv/build_cv.py CV_TOMASVALLEJOS.pdf
+```
+
+Después de regenerarlo, subile la versión al campo `cv` de `content.js` (`CV_TOMASVALLEJOS.pdf?v=AAAAMMDD`) para que el navegador no siga sirviendo la copia vieja desde caché.
+
 ## Despliegue
 
 Es una carpeta estática sin build: cualquier hosting que sirva archivos tal cual (Vercel, Netlify, Cloudflare Pages, GitHub Pages) alcanza. El punto de entrada es `index.html`.
