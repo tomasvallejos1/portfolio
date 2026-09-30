@@ -14,6 +14,8 @@ window.PORTFOLIO_DATA = Object.freeze({
     email: 'tomasvallejos081@gmail.com',
     linkedin: 'https://www.linkedin.com/in/tomasvallejos123',
     github: 'https://github.com/tomasvallejos1',
+    whatsapp: 'https://wa.me/5493462609305',
+    phone: '+54 9 3462 609305',
     cv: 'CV_TOMASVALLEJOS.pdf?v=20260927',
   },
 
@@ -692,6 +694,7 @@ window.PORTFOLIO_DATA = Object.freeze({
     /* ============================================================ 03 */
     {
       slug: 'hermanos-jota',
+      featured: false,
       number: '03',
       title: 'Hermanos Jota',
       category: 'E-commerce · Equipo de 4',
@@ -944,6 +947,12 @@ window.PORTFOLIO_DATA = Object.freeze({
         ],
       },
     },
+  ],
+
+  /* Lugares reservados en el carrusel "Otros proyectos". */
+  upcoming: [
+    { title: 'ViajeRentable', label: 'Próximamente' },
+    { title: 'Mensajería efímera', label: 'Próximamente' },
   ],
 
   experience: [

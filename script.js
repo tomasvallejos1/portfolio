@@ -155,12 +155,78 @@
       return;
     }
 
-    data.projects.forEach((project) => {
+    const featured = data.projects.filter((project) => project.featured !== false);
+    const others = data.projects.filter((project) => project.featured === false);
+
+    featured.forEach((project) => {
       const article = createElement('article', 'project-card reveal');
       article.style.setProperty('--project-color', project.accent || '#9381ff');
       article.append(buildProjectVisual(project), buildProjectContent(project));
       list.append(article);
     });
+
+    renderMoreProjects(others, data.upcoming || []);
+  };
+
+  /* Carrusel compacto: miniatura + título, sin ocupar alto. */
+  const renderMoreProjects = (others, upcoming) => {
+    const wrap = document.querySelector('#more-projects');
+    const track = document.querySelector('#more-track');
+    if (!wrap || !track || !(others.length || upcoming.length)) return;
+
+    others.forEach((project) => {
+      const card = createElement('a', 'more-card');
+      card.href = caseUrl(project);
+      card.style.setProperty('--project-color', project.accent || '#9381ff');
+
+      const thumb = createElement('span', 'more-thumb');
+      if (project.cover) {
+        const image = createElement('img');
+        image.src = project.cover;
+        image.alt = '';
+        image.loading = 'lazy';
+        image.decoding = 'async';
+        thumb.append(image);
+      }
+
+      const text = createElement('span', 'more-text');
+      text.append(
+        createElement('strong', '', project.title),
+        createElement('span', 'more-meta', `${project.category.split(' · ')[0]} · ${project.year}`),
+      );
+      card.append(thumb, text, createElement('i', '', '↗'));
+      track.append(card);
+    });
+
+    upcoming.forEach((item) => {
+      const card = createElement('div', 'more-card is-soon');
+      const thumb = createElement('span', 'more-thumb');
+      thumb.setAttribute('aria-hidden', 'true');
+      const text = createElement('span', 'more-text');
+      text.append(createElement('strong', '', item.title), createElement('span', 'more-meta', item.label || 'Próximamente'));
+      card.append(thumb, text);
+      track.append(card);
+    });
+
+    wrap.hidden = false;
+
+    const step = () => Math.max(track.clientWidth * 0.8, 240);
+    wrap.querySelectorAll('.more-arrow').forEach((button) => {
+      button.addEventListener('click', () => {
+        track.scrollBy({ left: Number(button.dataset.dir) * step(), behavior: 'smooth' });
+      });
+    });
+
+    const update = () => {
+      const max = track.scrollWidth - track.clientWidth;
+      const arrows = wrap.querySelectorAll('.more-arrow');
+      arrows[0].disabled = track.scrollLeft <= 2;
+      arrows[1].disabled = track.scrollLeft >= max - 2;
+      wrap.classList.toggle('is-scrollable', max > 2);
+    };
+    track.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
   };
 
   /* --- Trayectoria --------------------------------------------------- */
@@ -304,6 +370,10 @@
 
     document.querySelectorAll('[data-person-link="github"]').forEach((link) => {
       if (person.github) link.href = person.github;
+    });
+
+    document.querySelectorAll('[data-person-link="whatsapp"]').forEach((link) => {
+      if (person.whatsapp) link.href = person.whatsapp;
     });
 
     document.querySelectorAll('[data-person-link="cv"]').forEach((link) => {
