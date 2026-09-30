@@ -17,7 +17,8 @@ OUT = sys.argv[1] if len(sys.argv) > 1 else "CV_TOMASVALLEJOS.pdf"
 
 INK = HexColor("#141414")
 MUTED = HexColor("#4a4a4a")
-BLUE = HexColor("#1F4E79")  # mismo tono profesional que el CV anterior
+BLUE = HexColor("#1F4E79")  # enlaces
+BROWN = HexColor("#B4501C")  # títulos de sección (naranja tostado)
 
 # ------------------------------------------------------------------ estilos
 styles = {
@@ -35,7 +36,7 @@ styles = {
     ),
     "section": ParagraphStyle(
         "section", fontName="Helvetica-Bold", fontSize=10, leading=12.5,
-        textColor=BLUE, spaceBefore=6, spaceAfter=2, letterSpacing=0.4,
+        textColor=BROWN, spaceBefore=6, spaceAfter=2, letterSpacing=0.4,
     ),
     "body": ParagraphStyle(
         "body", fontName="Helvetica", fontSize=9, leading=11.8,

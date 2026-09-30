@@ -16,7 +16,7 @@ window.PORTFOLIO_DATA = Object.freeze({
     github: 'https://github.com/tomasvallejos1',
     whatsapp: 'https://wa.me/5493462609305',
     phone: '+54 9 3462 609305',
-    cv: 'CV_TOMASVALLEJOS.pdf?v=20260927',
+    cv: 'CV_TOMASVALLEJOS.pdf?v=20260942',
   },
 
   projects: [
@@ -33,8 +33,7 @@ window.PORTFOLIO_DATA = Object.freeze({
         'Gestor financiero personal: gastos, inversiones, cuentas y tarjetas en un solo lugar. Su centro es Manguito, un asistente que carga gastos por texto, voz o foto y responde sólo sobre tus datos, derivando a la IA únicamente lo que requiere razonar. Construido con foco en el rendimiento: se usa desde el celular y tiene que abrir al instante.',
       technologies: ['TypeScript', 'Angular', 'Node.js', 'Express', 'PostgreSQL', 'OpenAI', 'NVIDIA NIM'],
       href: 'https://mangofi.pages.dev/',
-      source: 'https://github.com/tomasvallejos1/ERP-Finanzas-Personales',
-      sourceLabel: 'Ver prototipo inicial',
+      demo: 'proyectos/mangofi-demo.html',
       linkLabel: 'Explorar la beta',
       visualLabel: 'FINTECH / AI / 2026',
       accent: '#c8ff66',
@@ -384,12 +383,7 @@ window.PORTFOLIO_DATA = Object.freeze({
         },
 
         links: [
-          { label: 'Entrar a la beta', href: 'https://mangofi.pages.dev/', kind: 'primary' },
-          {
-            label: 'Prototipo inicial en GitHub',
-            href: 'https://github.com/tomasvallejos1/ERP-Finanzas-Personales',
-            kind: 'secondary',
-          },
+          { label: 'Probar la beta', href: 'mangofi-demo.html', kind: 'primary' },
         ],
       },
     },
@@ -407,13 +401,13 @@ window.PORTFOLIO_DATA = Object.freeze({
         'Solución a medida para un taller de reparaciones real. Digitaliza años de fichas técnicas en papel con IA, las relaciona con cada reparación y le da seguimiento tanto en estado como contable, con presupuestos, remitos y facturación electrónica integrada con ARCA.',
       technologies: ['JavaScript', 'React', 'TypeScript', 'Supabase', 'PostgreSQL', 'Deno', 'NVIDIA NIM', 'ARCA (WSFE)'],
       href: 'https://bobinadosdavid.vercel.app/',
-      source: 'https://github.com/tomasvallejos1/gestor-taller',
       linkLabel: 'Visitar el sistema',
       visualLabel: 'OPERATIONS / 2025',
       accent: '#ff8e6e',
       accentInk: '#b3451f',
-      cover: 'assets/proyectos/gestor-taller/landing.webp',
-      coverAlt: 'Portada del sitio de Bobinados David con el mensaje "Potenciamos tus motores"',
+      cover: 'assets/proyectos/gestor-taller/portada.webp',
+      coverRatio: '1600 / 740',
+      coverAlt: 'Portada del sitio de Bobinados David: "Reparación y bobinado de motores eléctricos", con estatores bobinados de fondo',
 
       case: {
         tagline: 'Un taller con años de fichas técnicas en papel, sin forma de relacionarlas con cada reparación ni de saber qué se debía cobrar.',
@@ -686,7 +680,6 @@ window.PORTFOLIO_DATA = Object.freeze({
 
         links: [
           { label: 'Visitar el sistema', href: 'https://bobinadosdavid.vercel.app/', kind: 'primary' },
-          { label: 'Código en GitHub', href: 'https://github.com/tomasvallejos1/gestor-taller', kind: 'secondary' },
         ],
       },
     },

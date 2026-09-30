@@ -1552,3 +1552,198 @@ body.lightbox-open {
     padding: 1.4rem;
   }
 }
+
+/* ----------------------------------------------- Beta de MangoFi (demo) */
+.demo-hero {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  padding: clamp(7.5rem, 14vw, 10rem) 0 clamp(4rem, 8vw, 6rem);
+  background: var(--ink);
+  color: var(--white);
+}
+
+.demo-hero::before {
+  position: absolute;
+  top: -30%;
+  right: -12%;
+  width: 46rem;
+  height: 46rem;
+  border-radius: 50%;
+  opacity: 0.14;
+  background: radial-gradient(circle, var(--acid), transparent 62%);
+  content: "";
+  pointer-events: none;
+}
+
+.demo-inner {
+  position: relative;
+  display: grid;
+  justify-items: start;
+}
+
+.demo-inner > * {
+  max-width: 44rem;
+}
+
+.demo-kicker span {
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  background: var(--acid);
+  color: var(--ink);
+  font-family: Consolas, monospace;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.demo-hero h1 {
+  margin: 1.25rem 0 1.5rem;
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 760;
+  letter-spacing: -0.06em;
+  line-height: 0.9;
+}
+
+.demo-hero h1 em {
+  color: var(--acid);
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  letter-spacing: -0.05em;
+}
+
+.demo-lead {
+  max-width: 36rem;
+  color: rgba(250, 249, 245, 0.72);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.demo-lead strong {
+  color: var(--white);
+}
+
+.demo-card {
+  display: grid;
+  gap: 0.9rem;
+  width: min(100%, 30rem);
+  margin-top: 2rem;
+  padding: clamp(1.25rem, 3vw, 1.75rem);
+  border: 1px solid var(--line-dark);
+  border-radius: 1rem;
+  background: rgba(250, 249, 245, 0.05);
+}
+
+.demo-card h2 {
+  color: rgba(250, 249, 245, 0.62);
+  font-family: Consolas, monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.demo-field {
+  display: grid;
+  gap: 0.35rem 1rem;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  padding: 0.85rem 1rem;
+  border-radius: 0.7rem;
+  background: rgba(11, 12, 12, 0.6);
+}
+
+.demo-label {
+  grid-column: 1 / -1;
+  color: rgba(250, 249, 245, 0.5);
+  font-size: 0.7rem;
+}
+
+.demo-field code {
+  overflow-wrap: anywhere;
+  font-family: Consolas, monospace;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.demo-copy {
+  padding: 0.45rem 0.8rem;
+  border: 1px solid var(--line-dark);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--white);
+  font-size: 0.7rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.25s, color 0.25s, border-color 0.25s;
+}
+
+.demo-copy:hover,
+.demo-copy.is-done {
+  border-color: var(--acid);
+  background: var(--acid);
+  color: var(--ink);
+}
+
+.demo-go {
+  width: 100%;
+  margin-top: 0.4rem;
+}
+
+.demo-note {
+  color: rgba(250, 249, 245, 0.5);
+  font-size: 0.78rem;
+  line-height: 1.6;
+}
+
+.demo-list {
+  display: grid;
+  gap: 0.6rem;
+  max-width: 34rem;
+  margin: 2rem 0 0;
+  padding: 0;
+  color: rgba(250, 249, 245, 0.7);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  list-style: none;
+}
+
+.demo-list li {
+  position: relative;
+  padding-left: 1.3rem;
+}
+
+.demo-list li::before {
+  position: absolute;
+  left: 0;
+  color: var(--acid);
+  content: "✦";
+  font-size: 0.7rem;
+  top: 0.15rem;
+}
+
+@media (min-width: 981px) {
+  .demo-inner {
+    gap: 0 clamp(3rem, 6vw, 6rem);
+    grid-template-columns: minmax(0, 1.1fr) minmax(24rem, 0.9fr);
+    grid-template-rows: repeat(5, auto) 1fr;
+  }
+
+  .demo-inner > * {
+    grid-column: 1;
+    max-width: 38rem;
+  }
+
+  .demo-hero h1 {
+    font-size: clamp(3rem, 5.2vw, 4.8rem);
+  }
+
+  .demo-inner > .demo-card {
+    grid-column: 2;
+    grid-row: 2 / span 4;
+    align-self: start;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+}

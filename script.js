@@ -71,6 +71,7 @@
     bar.append(dots, createElement('span', 'shot-url', hostOf(project.href)));
 
     const frame = createElement('div', 'shot-frame');
+    if (project.coverRatio) frame.style.aspectRatio = project.coverRatio;
     const image = buildCoverImage(project);
     image.width = 1600;
     image.height = 1000;
@@ -132,7 +133,12 @@
     primary.append(createElement('span', '', 'Ver el caso completo'), createElement('i', '', '↗'));
 
     const secondary = createElement('div', 'project-secondary-links');
-    if (isExternal(project.href)) {
+    if (project.demo) {
+      const demo = createElement('a', 'mini-link');
+      demo.href = project.demo;
+      demo.append(createElement('span', '', project.linkLabel || 'Probar la beta'), createElement('i', '', '↗'));
+      secondary.append(demo);
+    } else if (isExternal(project.href)) {
       secondary.append(externalLink('mini-link', project.linkLabel || 'Ver proyecto', project.href));
     }
     if (isExternal(project.source)) {

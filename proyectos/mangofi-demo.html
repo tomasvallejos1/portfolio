@@ -4,20 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0b0c0c" />
-    <meta name="description" content="Cómo construí MangoFi: un gestor financiero personal con carga de gastos por WhatsApp, lectura de comprobantes con IA e inversiones que se actualizan solas. Stack, patrones y decisiones." />
+    <meta name="description" content="Probá la beta de MangoFi con una cuenta demo: todas las funciones habilitadas y datos de ejemplo cargados." />
     <meta name="author" content="Tomás Vallejos" />
-    <meta property="og:type" content="article" />
+    <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_AR" />
-    <meta property="og:title" content="MangoFi — Proyecto de Tomás Vallejos" />
-    <meta property="og:description" content="Cómo construí MangoFi: un gestor financiero personal con carga de gastos por WhatsApp, lectura de comprobantes con IA e inversiones que se actualizan solas. Stack, patrones y decisiones." />
+    <meta property="og:title" content="Probá MangoFi con la cuenta demo" />
+    <meta property="og:description" content="Cuenta demo con todas las funciones y datos de ejemplo para probar la beta." />
     <meta property="og:image" content="https://tomasvallejos.tech/assets/proyectos/mangofi/og.png" />
-    <meta property="og:url" content="https://tomasvallejos.tech/proyectos/mangofi.html" />
+    <meta property="og:url" content="https://tomasvallejos.tech/proyectos/mangofi-demo.html" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="MangoFi — Proyecto de Tomás Vallejos" />
-    <meta name="twitter:description" content="Cómo construí MangoFi: un gestor financiero personal con carga de gastos por WhatsApp, lectura de comprobantes con IA e inversiones que se actualizan solas. Stack, patrones y decisiones." />
+    <meta name="twitter:title" content="Probá MangoFi con la cuenta demo" />
+    <meta name="twitter:description" content="Cuenta demo con todas las funciones y datos de ejemplo para probar la beta." />
     <meta name="twitter:image" content="https://tomasvallejos.tech/assets/proyectos/mangofi/og.png" />
-    <title>MangoFi — Caso de estudio · Tomás Vallejos</title>
-    <link rel="canonical" href="https://tomasvallejos.tech/proyectos/mangofi.html" />
+    <title>Probá la beta de MangoFi · Tomás Vallejos</title>
+    <link rel="canonical" href="https://tomasvallejos.tech/proyectos/mangofi-demo.html" />
+    <meta name="robots" content="noindex" />
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="../styles.css?v=20260943" />
     <link rel="stylesheet" href="../proyecto.css?v=20260943" />
@@ -25,24 +26,8 @@
       document.documentElement.classList.remove('no-js');
       document.documentElement.classList.add('js');
     </script>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "MangoFi",
-        "applicationCategory": "FinanceApplication",
-        "url": "https://mangofi.pages.dev/",
-        "description": "Cómo construí MangoFi: un gestor financiero personal con carga de gastos por WhatsApp, lectura de comprobantes con IA e inversiones que se actualizan solas. Stack, patrones y decisiones.",
-        "operatingSystem": "Web",
-        "author": {
-          "@type": "Person",
-          "name": "Tomás Vallejos",
-          "url": "https://www.linkedin.com/in/tomasvallejos123"
-        }
-      }
-    </script>
   </head>
-  <body data-project="mangofi">
+  <body class="demo-page">
     <a class="skip-link" href="#contenido">Saltar al contenido</a>
     <div class="page-noise" aria-hidden="true"></div>
     <div class="scroll-progress" aria-hidden="true"><span></span></div>
@@ -90,10 +75,55 @@
     </header>
 
     <main id="contenido">
-      <article id="case-root"></article>
-    </main>
+      <section class="demo-hero">
+        <div class="container demo-inner">
+          <a class="case-back" href="mangofi.html">
+            <i>←</i><span>Volver al caso de MangoFi</span>
+          </a>
 
-    <nav class="case-nav" id="case-nav" aria-label="Secciones de este caso"></nav>
+          <p class="demo-kicker"><span>Beta pública</span></p>
+          <h1>Probá MangoFi<br /><em>sin crear cuenta.</em></h1>
+          <p class="demo-lead">
+            Armé una cuenta demo con <strong>todas las funciones habilitadas</strong>
+            y datos de ejemplo ya cargados: cuentas, tarjetas, inversiones y
+            movimientos. Podés recorrerla, cargar gastos y hablar con Manguito
+            sin tocar datos reales.
+          </p>
+
+          <div class="demo-card" role="group" aria-labelledby="demo-title">
+            <h2 id="demo-title">Datos de acceso</h2>
+
+            <div class="demo-field">
+              <span class="demo-label">Correo</span>
+              <code id="demo-email">mango@demo.com</code>
+              <button type="button" class="demo-copy" data-copy="mango@demo.com" aria-label="Copiar correo">Copiar</button>
+            </div>
+
+            <div class="demo-field">
+              <span class="demo-label">Contraseña</span>
+              <code id="demo-pass">demo1234</code>
+              <button type="button" class="demo-copy" data-copy="demo1234" aria-label="Copiar contraseña">Copiar</button>
+            </div>
+
+            <a class="button button-primary demo-go" id="demo-go" href="https://mangofi.pages.dev/login" target="_blank" rel="noreferrer">
+              Ir al login
+              <span class="button-icon" aria-hidden="true">↗</span>
+            </a>
+            <p class="demo-note">
+              Se abre en una pestaña nueva. Es una cuenta compartida: otras
+              personas pueden estar probándola al mismo tiempo, así que los datos
+              pueden cambiar.
+            </p>
+          </div>
+
+          <ul class="demo-list">
+            <li>Todas las funciones están activas, incluido el asistente Manguito.</li>
+            <li>Los datos que ves son de ejemplo, no de una persona real.</li>
+            <li>Está pensada para celular, pero también funciona en escritorio.</li>
+          </ul>
+        </div>
+      </section>
+    </main>
 
     <footer class="site-footer">
       <div class="container footer-inner">
@@ -109,13 +139,13 @@
 
     <noscript>
       <div class="noscript-message">
-        Este caso de estudio se arma con JavaScript. Activalo para leerlo, o
-        <a href="https://mangofi.pages.dev/">visitá MangoFi directamente</a>.
+        Podés entrar directo a la beta:
+        <a href="https://mangofi.pages.dev/login">ir a MangoFi</a>.
       </div>
     </noscript>
 
     <script src="../content.js?v=20260943" defer></script>
-    <script src="../proyecto.js?v=20260943" defer></script>
     <script src="../ui.js?v=20260943" defer></script>
+    <script src="../demo.js?v=20260943" defer></script>
   </body>
 </html>
